@@ -1,0 +1,8 @@
+{
+  "resolution": "main",
+  "tree": {
+    "src": "https://raw.githubusercontent.com/gcanti/tcomb/master/index.d.ts",
+    "raw": "github:gcanti/tcomb/index.d.ts",
+    "typings": "https://raw.githubusercontent.com/gcanti/tcomb/master/index.d.ts"
+  }
+}

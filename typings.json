@@ -1,5 +1,11 @@
 {
   "globalDependencies": {
     "node": "registry:env/node#6.0.0+20170119204930"
+  },
+  "devDependencies": {
+    "index": "github:gcanti/tcomb/index.d.ts"
+  },
+  "globalDevDependencies": {
+    "pixi.js": "github:pixijs/pixi-typescript/pixi.js.d.ts"
   }
 }
