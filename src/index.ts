@@ -1,31 +1,39 @@
 import {ExampleModule} from "./ExampleClass";
-import {HtmlCreatorModule} from "./HtmlCreator";
 import {} from "pixi.js";
 
 
-
-var renderer = PIXI.autoDetectRenderer(256, 256);
-
+let stage : PIXI.Container = new PIXI.Container();
+let renderer : PIXI.SystemRenderer = PIXI.autoDetectRenderer(256, 256);
 document.body.appendChild(renderer.view);
 
-var stage = new PIXI.Container();
+PIXI.loader
+.add("../assets/bunny.png")
+.load(setup);
 
-renderer.render(stage);
+let bunny : PIXI.Sprite;
+function setup() {
+
+    bunny = new PIXI.Sprite(PIXI.loader.resources["../assets/bunny.png"].texture);
+
+    bunny.x = -12;
+    bunny.y = 96;
+
+    stage.addChild(bunny);
+
+}
 
 
+function gameLoop() {
+    requestAnimationFrame(gameLoop);
+
+    bunny.x += 1;
+    if (bunny.x > renderer.width)
+        bunny.x = -12;
+
+    renderer.render(stage);
+}
 
 let example = new ExampleModule.ExampleClass();
+gameLoop();
 
 
-console.log("LET US ECHO SOMETHING==> " + example.echo("foo"));
-console.log("this is hot transpile... or is it?" );
-console.log("oh yes!");
-console.log("just seems to sometimes not work?");
-
-
-
-//let canvas : HTMLCanvasElement = htmlCreator.createCanvas();
-
-
-
-//document.body.appendChild(canvas);
