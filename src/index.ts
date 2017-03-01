@@ -1,68 +1,58 @@
-import {ExampleModule} from "./ExampleClass";
-import {InputModule} from "./InputModule";
-import {} from "pixi.js";
+///<reference path="GameObject.ts"/>
+/// <reference path="Input.ts" />
+/// <reference path="Rabbit.ts" />
+/// <reference path="RabbitRenderable.ts" />
 
+
+
+
+import {} from "pixi.js";
+import RabbitRenderable = GameModule.RabbitRenderable;
+import GameObject = GameModule.GameObject;
+import Rabbit = GameModule.Rabbit;
+import {ExampleModule} from "./ExampleClass";
 
 let stage : PIXI.Container = new PIXI.Container();
 let renderer : PIXI.SystemRenderer = PIXI.autoDetectRenderer(256, 256);
 document.body.appendChild(renderer.view);
 
 PIXI.loader
-.add("../assets/bunny.png")
-.load(setup);
+    .add("../assets/bunny.png")
+    .load(setup);
 
 let bunny : PIXI.Sprite;
+let gameObjects : GameObject[] = [];
+
+let foo : Input.Keyboard;
+
+var left: Input.Keyboard = new Input.Keyboard(37);
+var right: Input.Keyboard = new Input.Keyboard(39);
+
+
+
+
+
 function setup() {
 
     bunny = new PIXI.Sprite(PIXI.loader.resources["../assets/bunny.png"].texture);
-
     bunny.x = -12;
     bunny.y = 96;
-
     stage.addChild(bunny);
+    let rabbitRenderable : RabbitRenderable = new GameModule.RabbitRenderable(bunny);
+    let rabbit : Rabbit = new Rabbit(rabbitRenderable, left, right, renderer.width, 20);
+
+    gameObjects.push(rabbit);
 
     gameLoop();
 }
 
 
-var left: InputModule.Keyboard = new InputModule.Keyboard(37);
-var right: InputModule.Keyboard = new InputModule.Keyboard(39);
-var xOperator: number = 1;
-
-left.press = function () : void {
-  xOperator = -1;
-};
-
-right.press = function () : void {
-    xOperator = 1;
-}
-
 function gameLoop() {
     requestAnimationFrame(gameLoop);
 
-    const limit : number = 20;
-
-    if (right.isDown || left.isDown) {
-        if (renderer.backgroundColor == 0x010101)
-            renderer.backgroundColor = 0xAA0000;
-        else {
-            if (right.isDown)
-                renderer.backgroundColor = renderer.backgroundColor+1;
-            else
-                renderer.backgroundColor = renderer.backgroundColor-1;
-        }
-
+    for (var i = 0; i < gameObjects.length; i++) {
+        gameObjects[i].update();
     }
-    else
-        renderer.backgroundColor = 0x010101;
-
-    bunny.x += 1 * xOperator;
-    if (bunny.x > renderer.width + limit)
-        bunny.x = -limit;
-
-    if (bunny.x < -limit)
-        bunny.x = renderer.width + limit;
-
     renderer.render(stage);
 }
 

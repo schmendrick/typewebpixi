@@ -1,4 +1,4 @@
-export module InputModule {
+namespace Input {
 
     export class Keyboard {
 
