@@ -1,21 +1,23 @@
 ///<reference path="GameObject.ts"/>
 ///<reference path="Input.ts"/>
+import Renderable = GameModule.Renderable;
+import * as Input from "./Input";
 
-namespace GameModule {
+export class Rabbit implements GameModule.GameObject {
 
-    export class Rabbit implements GameObject {
 
         public x : number;
         public y : number;
-        protected renderable : RabbitRenderable;
+        protected renderable : Renderable;
         private xOperator : number;
         private maxX : number;
         private left : Input.Keyboard;
         private right : Input.Keyboard;
         private limit : number;
 
-        constructor(renderable : RabbitRenderable, left : Input.Keyboard, right : Input.Keyboard, maxX : number, limit : number) {
+        constructor(renderable : Renderable, left : Input.Keyboard, right : Input.Keyboard, maxX : number, limit : number) {
             this.renderable = renderable;
+            this.x = limit;
             this.maxX = maxX;
             this.limit = limit;
             this.left = left;
@@ -42,4 +44,3 @@ namespace GameModule {
             this.renderable.render();
         }
     }
-}

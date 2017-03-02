@@ -1,9 +1,10 @@
-import {ExampleModule} from "./ExampleClass";
+
+import {ExampleClass} from "./ExampleClass";
 const readline = require('readline');
 var Fiber = require('fibers');
 
 
-let example = new ExampleModule.ExampleClass();
+let example = new ExampleClass();
 
 function sleep(ms : number) {
     var fiber = Fiber.current;

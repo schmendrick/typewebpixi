@@ -1,10 +1,12 @@
+///<reference path="Rabbit.ts"/>
 ///<reference path="GameObject.ts"/>
 
-namespace GameModule {
+import {Rabbit} from "./Rabbit";
 
-    export class RabbitRenderable implements GameModule.Renderable {
+export class RabbitRenderable implements GameModule.Renderable {
 
-        gameObject: GameModule.Rabbit;
+        //gameObject: Rabbit;
+        public gameObject: Rabbit;
 
         private sprite : PIXI.Sprite;
 
@@ -18,4 +20,4 @@ namespace GameModule {
         }
 
     }
-}
+

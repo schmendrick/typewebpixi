@@ -21,5 +21,8 @@
     "watch": "webpack-dev-server --progress --colors"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "gsap": "^1.19.1"
+  }
 }

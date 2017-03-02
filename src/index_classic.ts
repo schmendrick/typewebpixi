@@ -1,5 +1,6 @@
-import {ExampleModule} from "./ExampleClass";
 import {} from "pixi.js";
+import {ExampleClass} from "./ExampleClass";
+import * as Input from "./Input";
 
 
 let stage : PIXI.Container = new PIXI.Container();
@@ -23,7 +24,8 @@ function setup() {
     gameLoop();
 }
 
-
+let example = new ExampleClass();
+console.log(example.echo("esfe"));
 var left: Input.Keyboard = new Input.Keyboard(37);
 var right: Input.Keyboard = new Input.Keyboard(39);
 var xOperator: number = 1;
@@ -37,7 +39,7 @@ right.press = function () : void {
 }
 
 function gameLoop() {
-    requestAnimationFrame(gameLoop);
+
 
     const limit : number = 20;
 
@@ -62,10 +64,12 @@ function gameLoop() {
     if (bunny.x < -limit)
         bunny.x = renderer.width + limit;
 
+    requestAnimationFrame(gameLoop);
+
     renderer.render(stage);
 }
 
-let example = new ExampleModule.ExampleClass();
+
 
 
 
